@@ -26,7 +26,7 @@ router.get('/register', registerView);
 router.get('/', usersGet );
 
 
-router.post('/', [
+router.post('/register', [
     check('name', 'Name is required').not().isEmpty(),
 
     check('password', 'Password must have 6 letters').isLength({min: 6}),
