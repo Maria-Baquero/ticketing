@@ -20,7 +20,7 @@ const UserSchema = Schema({
 
     },
     telephone: {
-        type: Number,
+        type: String,
         required: [true, 'Telephone is required']
         
     },

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registerForm');
-    const url = '/api/users'; 
+    const url = '/api/users/register'; 
 
     form.addEventListener('submit', async (ev) => {
         

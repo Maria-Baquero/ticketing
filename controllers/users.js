@@ -33,7 +33,7 @@ const usersPost = async (req, res = response) => {
 
     //leer informacion json que viene en el body, peticion post
     const {name, email, password, telephone, dni} = req.body;
-    const user = new User({name, email, password, telephone, dni, rol});
+    const user = new User({name, email, password, telephone, dni});
 
 
     //Encriptar contraseña
@@ -41,7 +41,7 @@ const usersPost = async (req, res = response) => {
     //ahora hacemos el hash
     user.password = bcryptjs.hashSync(password, salt);
 
-
+    console.log(req.body);
     //Guardar en BD
     await user.save();
 
