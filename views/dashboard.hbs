@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
+
 <body>
-    hola usuario
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
 
+                <li class="nav-item">
+                    <a class="nav-link active" href="/api/auth/dashboard">Dashboard</a>
+                </li>
 
+                
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Tickets</a>
+                    </li>
 
-    <br><br>
-    <div class="container">
-        <button id="google_signout">
-                SignOut
-        </button>
-    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Create Ticket</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/users">Users</a>
+                    </li>
+                </ul>
+
+               
+                <div class="d-flex align-items-center">
+
+                    <span class="text-white me-3">
+                        Welcome, User
+                    </span>
+
+                    <button id="google_signout" class="btn btn-outline-light">
+                        Sign Out
+                    </button>
+
+                </div>
+        </div>
+    </nav>
 
 
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="/js/dashboard.js"></script>
 </body>
+
 </html>

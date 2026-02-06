@@ -9,19 +9,22 @@ const User = require('../models/user');
 //Mostrar usuarios
 const usersGet = async (req = request, res = response) => {
 
-    //esto quiere decir que al mostrar los usuarios solo mostrará 5 
-    const {limit = 0} = req.query;
-    const query = {status: true}
+    try {
+        //esto quiere decir que al mostrar los usuarios solo mostrará 5 
+        const { limit = 5 } = req.query;
+        const query = { status: true }
 
-    const users = await User.find(query)
-        .limit(Number(limit));
+        const users = await User.find(query)
+            //.limit(Number(limit));
 
-    const total = await User.countDocuments(query);
+        const total = await User.countDocuments(query);
 
-    res.json({ 
-        total,
-        users
-    });
+        res.render('users/index', { users });
+
+        
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
 }
 
 
@@ -32,8 +35,8 @@ const usersPost = async (req, res = response) => {
 
 
     //leer informacion json que viene en el body, peticion post
-    const {name, email, password, telephone, dni} = req.body;
-    const user = new User({name, email, password, telephone, dni});
+    const { name, email, password, telephone, dni } = req.body;
+    const user = new User({ name, email, password, telephone, dni });
 
 
     //Encriptar contraseña
@@ -41,13 +44,13 @@ const usersPost = async (req, res = response) => {
     //ahora hacemos el hash
     user.password = bcryptjs.hashSync(password, salt);
 
-    console.log(req.body);
+
     //Guardar en BD
     await user.save();
 
 
     res.json({
-        
+
         user
     });
 }
@@ -59,31 +62,32 @@ const usersPost = async (req, res = response) => {
 
 
 //Actualizar usuarios
-const usersPut = async(req, res = response) => {
+const usersPut = async (req, res = response) => {
 
-    const { id }= req.params;
+    const { id } = req.params;
 
     //aqui excluimos los datos que no necesitamos o no queremos en este momento
-    const { _id, password, google, ...data} = req.body;
+    const { _id, password, google, ...data } = req.body;
 
 
     //validar con base de datos
     //si en los datos viene la contraseña la volvemos a encriptar
-    if(password){
-        const salt = bcryptjs.genSaltSync(); 
+    if (password) {
+        const salt = bcryptjs.genSaltSync();
         data.password = bcryptjs.hashSync(password, salt);
     }
 
-    const user = await User.findByIdAndUpdate( id, data);
+    const user = await User.findByIdAndUpdate(id, data);
 
-    res.json({ user });
+    res.render('users/edit', { user });
+    //res.json({ user });
 }
 
 
 
 
 
-const usersPatch = async(req = request, res = response) => {
+const usersPatch = async (req = request, res = response) => {
 
     res.json({
         msg: 'patch API - controller',
@@ -95,14 +99,14 @@ const usersPatch = async(req = request, res = response) => {
 
 
 //Eliminar usuarios
-const usersDelete = async(req, res = response) => {
-    const {id} = req.params;
+const usersDelete = async (req, res = response) => {
+    const { id } = req.params;
 
-    const user = await User.findByIdAndUpdate(id, {status: false});
+    const user = await User.findByIdAndUpdate(id, { status: false });
     //const user = await User.findByIdAndDelete(id);
     const userAuth = req.user;
 
-    res.json({userAuth});
+    res.json({ userAuth });
 }
 
 

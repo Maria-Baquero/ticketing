@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {check} = require('express-validator');
-const { registerView} = require('../controllers/views');
+
 
 const { validateEmail,
     validateTelephone,
@@ -17,16 +17,21 @@ const { usersGet,
  
 const { validateFields } = require('../middlewares/validate-fields');
 const { validateJWT } = require('../middlewares/validate-jwt');
+const { editView, createView } = require('../controllers/views');
+
 
 const router = Router();
 
 //--------------------------------------
-router.get('/register', registerView);
 
-router.get('/', usersGet );
+router.get('/', usersGet);
+
+router.get('/edit/:id', editView);
+
+router.get('/create', createView);
 
 
-router.post('/register', [
+router.post('/create', [
     check('name', 'Name is required').not().isEmpty(),
 
     check('password', 'Password must have 6 letters').isLength({min: 6}),
@@ -68,7 +73,7 @@ router.delete('/:id', [
 */
 
 //muestra el usuario despues de las validaciones con middlewares
-router.delete('/:id', [
+router.delete('/delete/:id', [
     validateJWT,                
       
     check('id', 'invalid ID').isMongoId(),
