@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create User</title>
+    <title>Create ticket</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -18,8 +18,8 @@
             <a class="navbar-brand" href="/api/auth/dashboard">Dashboard</a>
 
             <div class="d-flex">
-                <a href="/api/users" class="btn btn-outline-light">
-                    Back to Users
+                <a href="/api/tickets" class="btn btn-outline-light">
+                    Back to tickets
                 </a>
             </div>
 
@@ -33,7 +33,7 @@
 
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Create New User</h4>
+                        <h4 class="mb-0">Create New Ticket</h4>
                     </div>
 
                     <div class="card-body">
@@ -41,13 +41,13 @@
                         <form id="createUserForm">
 
                             <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" required>
+                                <label class="form-label">Description</label>
+                                <input type="text" name="description" id="description" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
