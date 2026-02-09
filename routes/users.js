@@ -12,12 +12,13 @@ const { usersGet,
     usersPost,
     usersPut,
     usersDelete,
-    usersPatch
+    usersPatch,
+    usersEditView
  } = require('../controllers/users');
  
 const { validateFields } = require('../middlewares/validate-fields');
 const { validateJWT } = require('../middlewares/validate-jwt');
-const { editView, createView } = require('../controllers/views');
+const { createView } = require('../controllers/views');
 
 
 const router = Router();
@@ -26,9 +27,11 @@ const router = Router();
 
 router.get('/', usersGet);
 
-router.get('/edit/:id', editView);
-
 router.get('/create', createView);
+
+router.get('/edit/:id', usersEditView);
+
+
 
 
 router.post('/create', [
@@ -50,7 +53,7 @@ router.post('/create', [
 
 
 
-router.put('/:id', [
+router.put('/edit/:id', [
     check('id', 'Not a valid ID').isMongoId(),
 
     check('id').custom( userExistById),

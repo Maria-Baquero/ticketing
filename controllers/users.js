@@ -56,6 +56,16 @@ const usersPost = async (req, res = response) => {
 }
 
 
+//vista editar 
+const usersEditView = async (req, res) => {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+
+    res.render('users/edit', { user });
+};
+
+
 
 
 
@@ -77,7 +87,7 @@ const usersPut = async (req, res = response) => {
         data.password = bcryptjs.hashSync(password, salt);
     }
 
-    const user = await User.findByIdAndUpdate(id, data);
+    const user = await User.findByIdAndUpdate(id, data, {new: true});
 
     res.render('users/edit', { user });
     //res.json({ user });
@@ -116,5 +126,6 @@ module.exports = {
     usersPost,
     usersPut,
     usersPatch,
-    usersDelete
+    usersDelete,
+    usersEditView
 }

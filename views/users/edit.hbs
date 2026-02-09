@@ -18,7 +18,7 @@
 
     <form id="editUserForm" type="">
 
-        <input type="hidden" id="uid" value="{{user.uid}}">
+        <input type="hidden" id="uid" value="{{user._id}}">
 
         <div class="mb-3">
             <label class="form-label">Name</label>
@@ -45,7 +45,7 @@
             Update User
         </button>
 
-        <a href="/users" class="btn btn-secondary">
+        <a href="/api/users" class="btn btn-secondary">
             Cancel
         </a>
 

@@ -11,8 +11,10 @@ document.getElementById('editUserForm').addEventListener('submit', async (e) => 
         dni: document.getElementById('dni').value
     };
 
+    console.log('id:', id)
+
     try {
-        const resp = await fetch(`/users/${id}`, {
+        const resp = await fetch(`/api/users/edit/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -24,7 +26,7 @@ document.getElementById('editUserForm').addEventListener('submit', async (e) => 
         }
 
         alert('User updated successfully');
-        window.location = '/users';
+        window.location = '/api/users';
 
     } catch (error) {
         console.error(error);
